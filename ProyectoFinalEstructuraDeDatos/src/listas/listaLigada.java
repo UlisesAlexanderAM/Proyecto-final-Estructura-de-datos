@@ -9,7 +9,7 @@ public interface listaLigada<T> {
 
 	nodoLista<T> buscarNodo(nodoLista<T> nodo);
 
-	nodoLista<T> buscarDato(nodoLista<T> nodo);
+	nodoLista<T> buscarDato(T dato);
 
 	void eliminar(nodoLista<T> nodo);
 

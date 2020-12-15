@@ -43,18 +43,32 @@ public class listaDoble<T> implements listaLigada<T> {
 	}
 
 	@Override
-	public nodoLista<T> buscarDato(nodoLista<T> nodo) {
-		return null;
+	public nodoLista<T> buscarDato(T dato) {
+		nodoLista<T> nodoTmp = cabeza.getSiguiente();
+		nodoLista<T> nodoBuscado = new nodoLista<>(null);
+		do {
+			if (cabeza.getSiguiente().getDato() == dato) {
+				nodoBuscado = cabeza.getSiguiente();
+				break;
+			}
+		}while (cabeza.getSiguiente() != null);
+		cabeza.setSiguiente(nodoTmp);
+		return nodoBuscado;
 	}
 
 	@Override
 	public nodoLista<T> buscarNodo(nodoLista<T> nodo) {
+		/*nodoLista<T> nodoTmp = cabeza.getSiguiente();
+		nodoLista<T> nodoBuscado =
+		do {
+
+		}while (cabeza.getSiguiente() != null);
+		return nodoTmp;*/
 		return null;
 	}
 
 	@Override
 	public void eliminar(nodoLista<T> nodo) {
-
 	}
 
 	@Override
@@ -81,5 +95,9 @@ public class listaDoble<T> implements listaLigada<T> {
 	public void vaciar() {
 		cabeza.setSiguiente(null);
 		cola.setPrevio(null);
+	}
+
+	public int getTamanio() {
+		return tamanio;
 	}
 }
