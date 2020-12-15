@@ -16,11 +16,14 @@ public class pila<T> extends listaDoble<T> {
 		this(new nodoLista<>(dato));
 	}
 
+
 	@Override
 	public void insertar(nodoLista<T> nodo) {
 		nodoLista<T> nodoTmp = cola.getPrevio();
 		nodoTmp.setSiguiente(nodo);
+		nodo.setPrevio(nodoTmp);
 		nodo.setSiguiente(cola);
+		cola.setPrevio(nodo);
 		tamanio+=1;
 	}
 }
