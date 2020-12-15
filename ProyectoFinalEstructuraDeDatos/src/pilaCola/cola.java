@@ -24,4 +24,8 @@ public class cola<T> extends listaDoble<T> {
 		cabeza.setSiguiente(nodo);
 		tamanio+=1;
 	}
+
+	public void push(T dato){
+		insertar(new nodoLista<>(dato));
+	}
 }
