@@ -7,11 +7,11 @@ public interface listaLigada<T> {
 
 	void insertar(T dato);
 
-	nodoLista<T> buscarNodo(nodoLista<T> nodo);
-
 	nodoLista<T> buscarDato(T dato);
 
 	void eliminar(nodoLista<T> nodo);
+
+	void eliminar(T dato);
 
 	T ultimo();
 

@@ -57,18 +57,17 @@ public class listaDoble<T> implements listaLigada<T> {
 	}
 
 	@Override
-	public nodoLista<T> buscarNodo(nodoLista<T> nodo) {
-		/*nodoLista<T> nodoTmp = cabeza.getSiguiente();
-		nodoLista<T> nodoBuscado =
-		do {
-
-		}while (cabeza.getSiguiente() != null);
-		return nodoTmp;*/
-		return null;
+	public void eliminar(nodoLista<T> nodo) {
+		nodoLista <T> nodoPrevio, nodoSiguiente = new nodoLista<>(null);
+		nodoPrevio = nodo.getPrevio();
+		nodoSiguiente = nodo.getSiguiente();
+		nodoPrevio.setSiguiente(nodoSiguiente);
+		nodoSiguiente.setPrevio(nodoPrevio);
 	}
 
 	@Override
-	public void eliminar(nodoLista<T> nodo) {
+	public void eliminar(T dato) {
+		eliminar(buscarDato(dato));
 	}
 
 	@Override
