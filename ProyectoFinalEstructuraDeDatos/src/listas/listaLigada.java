@@ -13,9 +13,13 @@ public interface listaLigada<T> {
 
 	void eliminar(nodoLista<T> nodo);
 
-	nodoLista<T> anterior();
+	T ultimo();
 
-	nodoLista<T> primero();
+	T primero();
+
+	T primero(nodoLista<T> nodo);
+
+	T ultimo(nodoLista<T> nodo);
 
 	void vaciar();
 }

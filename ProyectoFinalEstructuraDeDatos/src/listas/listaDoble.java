@@ -58,13 +58,23 @@ public class listaDoble<T> implements listaLigada<T> {
 	}
 
 	@Override
-	public nodoLista<T> anterior() {
-		return null;
+	public T ultimo() {
+		return ultimo(cola.getPrevio());
 	}
 
 	@Override
-	public nodoLista<T> primero() {
-		return null;
+	public T primero() {
+		return primero(cabeza.getSiguiente());
+	}
+
+	@Override
+	public T primero(nodoLista<T> nodo) {
+		return nodo.getDato();
+	}
+
+	@Override
+	public T ultimo(nodoLista<T> nodo) {
+		return nodo.getDato();
 	}
 
 	@Override

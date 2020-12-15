@@ -16,16 +16,6 @@ public class listaSimple <T> extends listaDoble<T>{
 	}
 
 	@Override
-	public nodoLista<T> anterior() {
-		return null;
-	}
-
-	@Override
-	public nodoLista<T> primero() {
-		return null;
-	}
-
-	@Override
 	public void vaciar() {
 		cabeza.setSiguiente(null);
 	}
