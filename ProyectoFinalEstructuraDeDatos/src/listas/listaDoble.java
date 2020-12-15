@@ -38,8 +38,6 @@ public class listaDoble<T> implements listaLigada<T> {
 
 	@Override
 	public void insertar(T dato) {
-		nodoLista<T> nodoTmp = new nodoLista<>(dato);
-		this.insertar(nodoTmp);
 	}
 
 	@Override
@@ -58,11 +56,11 @@ public class listaDoble<T> implements listaLigada<T> {
 
 	@Override
 	public void eliminar(nodoLista<T> nodo) {
-		nodoLista <T> nodoPrevio, nodoSiguiente = new nodoLista<>(null);
-		nodoPrevio = nodo.getPrevio();
-		nodoSiguiente = nodo.getSiguiente();
+		nodoLista <T> nodoPrevio = nodo.getPrevio();
+		nodoLista <T> nodoSiguiente = nodo.getSiguiente();
 		nodoPrevio.setSiguiente(nodoSiguiente);
 		nodoSiguiente.setPrevio(nodoPrevio);
+		tamanio-=1;
 	}
 
 	@Override

@@ -26,4 +26,9 @@ public class pila<T> extends listaDoble<T> {
 		cola.setPrevio(nodo);
 		tamanio+=1;
 	}
+
+	public void push(T dato){
+		insertar(new nodoLista<>(dato));
+	}
+
 }
