@@ -19,12 +19,20 @@ public class pila<T> extends listaDoble<T> {
 
 	@Override
 	public void insertar(nodoLista<T> nodo) {
-		nodoLista<T> nodoTmp = cola.getPrevio();
-		nodoTmp.setSiguiente(nodo);
-		nodo.setPrevio(nodoTmp);
-		nodo.setSiguiente(cola);
-		cola.setPrevio(nodo);
-		tamanio+=1;
+		if (tamanio == 0){
+			cabeza.setSiguiente(nodo);
+			nodo.setPrevio(cabeza);
+			nodo.setSiguiente(cola);
+			cola.setPrevio(nodo);
+		}
+		else {
+			nodoLista<T> nodoTmp = cola.getPrevio();
+			nodoTmp.setSiguiente(nodo);
+			nodo.setPrevio(nodoTmp);
+			nodo.setSiguiente(cola);
+			cola.setPrevio(nodo);
+		}
+		tamanio += 1;
 	}
 
 	public void push(T dato){
@@ -45,5 +53,4 @@ public class pila<T> extends listaDoble<T> {
 	public T cima(){
 		return cola.getPrevio().getDato();
 	}
-
 }
