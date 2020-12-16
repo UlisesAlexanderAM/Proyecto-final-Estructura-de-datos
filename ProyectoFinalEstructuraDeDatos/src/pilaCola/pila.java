@@ -32,11 +32,8 @@ public class pila<T> extends listaDoble<T> {
 	}
 
 	public T pop(){
-		nodoLista<T> nodoTmp = cola.getPrevio().getPrevio();
-		T dato = cola.getPrevio().getDato();
-		nodoTmp.setSiguiente(cola);
-		cola.setPrevio(nodoTmp);
-		return dato;
+		eliminar();
+		return cima();
 	}
 
 	public void eliminar() {
@@ -45,11 +42,8 @@ public class pila<T> extends listaDoble<T> {
 		cola.setPrevio(nodoTmp);
 	}
 
-	public void pop(int opcion){
-		if (opcion == 1){
-			pop();
-		}
-		else
-			eliminar();
+	public T cima(){
+		return cola.getPrevio().getDato();
 	}
+
 }
