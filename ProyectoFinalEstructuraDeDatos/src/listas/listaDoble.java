@@ -34,6 +34,20 @@ public class listaDoble<T> implements listaLigada<T> {
 
 	@Override
 	public void insertar(nodoLista<T> nodo) {
+		if (tamanio == 0){
+			cabeza.setSiguiente(nodo);
+			nodo.setPrevio(cabeza);
+			nodo.setSiguiente(cola);
+			cola.setPrevio(nodo);
+		}
+		else {
+			nodoLista<T> nodoTmp = cola.getPrevio();
+			nodoTmp.setSiguiente(nodo);
+			nodo.setPrevio(nodoTmp);
+			nodo.setSiguiente(cola);
+			cola.setPrevio(nodo);
+		}
+		tamanio += 1;
 	}
 
 	@Override
