@@ -36,16 +36,14 @@ public class listaDoble<T> implements listaLigada<T> {
 		if (tamanio == 0){
 			cabeza.setSiguiente(nodo);
 			nodo.setPrevio(cabeza);
-			nodo.setSiguiente(cola);
-			cola.setPrevio(nodo);
 		}
 		else {
 			nodoLista<T> nodoTmp = cola.getPrevio();
 			nodoTmp.setSiguiente(nodo);
 			nodo.setPrevio(nodoTmp);
-			nodo.setSiguiente(cola);
-			cola.setPrevio(nodo);
 		}
+		nodo.setSiguiente(cola);
+		cola.setPrevio(nodo);
 		tamanio += 1;
 	}
 
@@ -113,9 +111,6 @@ public class listaDoble<T> implements listaLigada<T> {
 	public void vaciar() {
 		cabeza.setSiguiente(cola);
 		cola.setPrevio(cabeza);
-	}
-
-	public int getTamanio() {
-		return tamanio;
+		tamanio = 0;
 	}
 }
