@@ -11,10 +11,6 @@ public class cola<T> extends listaDoble<T> {
 		super(dato);
 	}
 
-	public cola(nodoLista<T> nodo) {
-		super(nodo);
-	}
-
 	public T quitar() {
 		if (eliminar() == -1) {
 			return null;

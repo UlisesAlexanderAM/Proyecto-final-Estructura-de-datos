@@ -1,25 +1,88 @@
 package listas.listasEnlazadas;
 
-public interface listaLigada<T> {
-	boolean estaVacia();
+public abstract class listaLigada<T> implements lista<T> {
+	protected nodoLista<T> cabeza;
+	protected nodoLista<T> cola;
+	protected int tamanio;
 
-	void insertar(nodoLista<T> nodo);
+	public listaLigada() {
+		cabeza = new nodoLista<>(null);
+		cola = new nodoLista<>(null);
+		tamanio = 0;
+		cabeza.setSiguiente(cola);
+		cola.setPrevio(cabeza);
+	}
 
-	void insertar(T dato);
+	public listaLigada(T dato) {
+		this(new nodoLista<>(dato));
+	}
 
-	nodoLista<T> buscarDato(T dato);
+	public listaLigada(nodoLista<T> nodo) {
+		this();
+		tamanio = 1;
+		cabeza.setSiguiente(nodo);
+		nodo.setPrevio(cabeza);
+		nodo.setSiguiente(cola);
+		cola.setPrevio(nodo);
+	}
 
-	void eliminar(nodoLista<T> nodo);
+	@Override
+	public boolean estaVacia() {
+		return tamanio == 0;
+	}
 
-	int eliminar(T dato);
+	@Override
+	public abstract void insertar(nodoLista<T> nodo);
 
-	T ultimo();
+	@Override
+	public void insertar(T dato) {
+		insertar(new nodoLista<>(dato));
+	}
 
-	T primero();
+	@Override
+	public nodoLista<T> buscarDato(T dato){
+		nodoLista<T> nodoTmp = cabeza.getSiguiente();
+		nodoLista<T> nodoBuscado = new nodoLista<>(null);
+		do {
+			if (nodoTmp.getDato() == dato) {
+				nodoBuscado = nodoTmp;
+				break;
+			} else
+				nodoTmp = nodoTmp.getSiguiente();
+		} while (nodoTmp != cola);
+		return nodoBuscado;
+	}
 
-	T primero(nodoLista<T> nodo);
+	@Override
+	public abstract void eliminar(nodoLista<T> nodo);
 
-	T ultimo(nodoLista<T> nodo);
+	@Override
+	public abstract int eliminar(T dato);
 
-	void vaciar();
+	@Override
+	public T ultimo() {
+		return ultimo(cola.getPrevio());
+	}
+
+	@Override
+	public T primero() {
+		return primero(cabeza.getSiguiente());
+	}
+
+	@Override
+	public T primero(nodoLista<T> nodo) {
+		return nodo.getDato();
+	}
+
+	@Override
+	public T ultimo(nodoLista<T> nodo) {
+		return nodo.getDato();
+	}
+
+	@Override
+	public void vaciar() {
+		cabeza.setSiguiente(cola);
+		cola.setPrevio(cabeza);
+		tamanio = 0;
+	}
 }

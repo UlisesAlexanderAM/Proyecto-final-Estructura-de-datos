@@ -8,10 +8,6 @@ public class pila<T> extends listaDoble<T> {
 		super();
 	}
 
-	public pila(nodoLista<T> nodo) {
-		super(nodo);
-	}
-
 	public pila(T dato) {
 		super(dato);
 	}

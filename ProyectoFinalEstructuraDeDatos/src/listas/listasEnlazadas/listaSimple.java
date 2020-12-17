@@ -1,35 +1,18 @@
 package listas.listasEnlazadas;
 
-public class listaSimple<T> implements listaLigada<T> {
+public class listaSimple<T> extends listaLigada<T> {
+
 	protected nodoLista<T> cabeza;
 	protected nodoLista<T> cola;
 	protected int tamanio;
 
 
 	public listaSimple() {
-		tamanio = 0;
-		cabeza = new nodoLista<>(null);
-		cola = new nodoLista<>(null);
-		cabeza.setSiguiente(cola);
-		cola.setPrevio(cabeza);
+		super();
 	}
 
 	public listaSimple(T dato) {
-		this(new nodoLista<>(dato));
-	}
-
-	public listaSimple(nodoLista<T> nodo) {
-		this();
-		tamanio = 1;
-		cabeza.setSiguiente(nodo);
-		nodo.setSiguiente(cola);
-		cola.setPrevio(nodo);
-	}
-
-
-	@Override
-	public boolean estaVacia() {
-		return tamanio == 0;
+		super(dato);
 	}
 
 	@Override
@@ -46,30 +29,10 @@ public class listaSimple<T> implements listaLigada<T> {
 	}
 
 	@Override
-	public void insertar(T dato) {
-		insertar(new nodoLista<>(dato));
-	}
-
-	@Override
-	public nodoLista<T> buscarDato(T dato) {
-		nodoLista<T> nodoTmp = cabeza.getSiguiente();
-		nodoLista<T> nodoBuscado = new nodoLista<>(null);
-		do {
-			if (nodoTmp.getDato() == dato) {
-				nodoBuscado = nodoTmp;
-				break;
-			} else
-				nodoTmp = nodoTmp.getSiguiente();
-		} while (nodoTmp != cola);
-		return nodoBuscado;
-	}
-
-	@Override
 	public void eliminar(nodoLista<T> nodo) {
-		nodoLista<T> nodoPrevio = nodo.getPrevio();
+		nodoLista<T> nodoPrevio = buscarDatoPrevio(nodo.getDato());
 		nodoLista<T> nodoSiguiente = nodo.getSiguiente();
 		nodoPrevio.setSiguiente(nodoSiguiente);
-		nodoSiguiente.setPrevio(nodoPrevio);
 		tamanio -= 1;
 	}
 
@@ -84,30 +47,19 @@ public class listaSimple<T> implements listaLigada<T> {
 		}
 	}
 
-	@Override
-	public T ultimo() {
-		return ultimo(cola.getPrevio());
-	}
-
-	@Override
-	public T primero() {
-		return primero(cabeza.getSiguiente());
-	}
-
-	@Override
-	public T primero(nodoLista<T> nodo) {
-		return nodo.getDato();
-	}
-
-	@Override
-	public T ultimo(nodoLista<T> nodo) {
-		return nodo.getDato();
-	}
-
-	@Override
-	public void vaciar() {
-		cabeza.setSiguiente(cola);
-		cola.setPrevio(cabeza);
-		tamanio = 0;
+	public nodoLista<T> buscarDatoPrevio(T dato){
+		nodoLista<T> nodoTmp = cabeza.getSiguiente();
+		nodoLista<T> nodoBuscado = new nodoLista<>(null);
+		nodoLista<T> nodoPrevio = cabeza;
+		do {
+			if (nodoTmp.getDato() == dato) {
+				nodoBuscado = nodoPrevio;
+				break;
+			} else {
+				nodoTmp = nodoTmp.getSiguiente();
+				nodoPrevio = nodoPrevio.getSiguiente();
+			}
+		} while (nodoTmp != cola);
+		return nodoBuscado;
 	}
 }

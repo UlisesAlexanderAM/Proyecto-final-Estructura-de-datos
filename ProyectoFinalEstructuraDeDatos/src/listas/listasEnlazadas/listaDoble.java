@@ -1,34 +1,13 @@
 package listas.listasEnlazadas;
 
-public class listaDoble<T> implements listaLigada<T> {
-	protected nodoLista<T> cabeza;
-	protected nodoLista<T> cola;
-	protected int tamanio;
+public class listaDoble<T> extends listaLigada<T> {
 
 	public listaDoble() {
-		tamanio = 0;
-		cabeza = new nodoLista<>(null);
-		cola = new nodoLista<>(null);
-		cabeza.setSiguiente(cola);
-		cola.setPrevio(cabeza);
+		super();
 	}
 
 	public listaDoble(T dato) {
-		this(new nodoLista<>(dato));
-	}
-
-	public listaDoble(nodoLista<T> nodo) {
-		this();
-		tamanio = 1;
-		cabeza.setSiguiente(nodo);
-		nodo.setPrevio(cabeza);
-		nodo.setSiguiente(cola);
-		cola.setPrevio(nodo);
-	}
-
-	@Override
-	public boolean estaVacia() {
-		return tamanio == 0;
+		super(dato);
 	}
 
 	@Override
@@ -44,25 +23,6 @@ public class listaDoble<T> implements listaLigada<T> {
 		nodo.setSiguiente(cola);
 		cola.setPrevio(nodo);
 		tamanio += 1;
-	}
-
-	@Override
-	public void insertar(T dato) {
-		insertar(new nodoLista<>(dato));
-	}
-
-	@Override
-	public nodoLista<T> buscarDato(T dato) {
-		nodoLista<T> nodoTmp = cabeza.getSiguiente();
-		nodoLista<T> nodoBuscado = new nodoLista<>(null);
-		do {
-			if (nodoTmp.getDato() == dato) {
-				nodoBuscado = nodoTmp;
-				break;
-			} else
-				nodoTmp = nodoTmp.getSiguiente();
-		} while (nodoTmp != cola);
-		return nodoBuscado;
 	}
 
 	@Override
@@ -85,30 +45,4 @@ public class listaDoble<T> implements listaLigada<T> {
 		}
 	}
 
-	@Override
-	public T ultimo() {
-		return ultimo(cola.getPrevio());
-	}
-
-	@Override
-	public T primero() {
-		return primero(cabeza.getSiguiente());
-	}
-
-	@Override
-	public T primero(nodoLista<T> nodo) {
-		return nodo.getDato();
-	}
-
-	@Override
-	public T ultimo(nodoLista<T> nodo) {
-		return nodo.getDato();
-	}
-
-	@Override
-	public void vaciar() {
-		cabeza.setSiguiente(cola);
-		cola.setPrevio(cabeza);
-		tamanio = 0;
-	}
 }
