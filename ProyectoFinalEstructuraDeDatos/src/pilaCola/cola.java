@@ -16,10 +16,14 @@ public class cola<T> extends listaDoble<T> {
 	}
 
 	public int eliminar() {
-		nodoLista<T> nodoTmp = cabeza.getSiguiente().getSiguiente();
-		cabeza.setSiguiente(nodoTmp);
-		nodoTmp.setPrevio(cabeza);
-		return 0;
+		if (this.estaVacia())
+			return -1;
+		else {
+			nodoLista<T> nodoTmp = cabeza.getSiguiente().getSiguiente();
+			cabeza.setSiguiente(nodoTmp);
+			nodoTmp.setPrevio(cabeza);
+			return 0;
+		}
 	}
 
 
