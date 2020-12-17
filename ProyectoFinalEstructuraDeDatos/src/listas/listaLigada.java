@@ -11,7 +11,7 @@ public interface listaLigada<T> {
 
 	void eliminar(nodoLista<T> nodo);
 
-	void eliminar(T dato);
+	int eliminar(T dato);
 
 	T ultimo();
 

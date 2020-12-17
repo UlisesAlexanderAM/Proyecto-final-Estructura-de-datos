@@ -79,8 +79,14 @@ public class listaDoble<T> implements listaLigada<T> {
 	}
 
 	@Override
-	public void eliminar(T dato) {
-		eliminar(buscarDato(dato));
+	public int eliminar(T dato) {
+		nodoLista<T> nodoTmp = buscarDato(dato);
+		if (nodoTmp.getDato()==null)
+			return -1;
+		else {
+			eliminar(buscarDato(dato));
+			return 0;
+		}
 	}
 
 	@Override

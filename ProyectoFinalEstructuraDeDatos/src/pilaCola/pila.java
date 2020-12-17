@@ -25,10 +25,11 @@ public class pila<T> extends listaDoble<T> {
 		return cima();
 	}
 
-	public void eliminar() {
+	public int eliminar() {
 		nodoLista<T> nodoTmp = cola.getPrevio().getPrevio();
 		nodoTmp.setSiguiente(cola);
 		cola.setPrevio(nodoTmp);
+		return 0;
 	}
 
 	public T cima(){
