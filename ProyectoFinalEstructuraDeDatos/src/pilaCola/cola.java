@@ -15,6 +15,13 @@ public class cola<T> extends listaDoble<T> {
 		super(nodo);
 	}
 
+	public T quitar(){
+		if (eliminar()==-1) {
+			return null;
+		} else
+			return frente();
+	}
+
 	public int eliminar() {
 		if (this.estaVacia())
 			return -1;
@@ -27,5 +34,8 @@ public class cola<T> extends listaDoble<T> {
 		}
 	}
 
+	public T frente(){
+		return primero();
+	}
 
 }

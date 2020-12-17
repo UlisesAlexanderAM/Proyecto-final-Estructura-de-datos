@@ -21,8 +21,10 @@ public class pila<T> extends listaDoble<T> {
 	}
 
 	public T pop(){
-		eliminar();
-		return cima();
+		if (eliminar()==-1) {
+			return null;
+		} else
+			return cima();
 	}
 
 	public int eliminar() {

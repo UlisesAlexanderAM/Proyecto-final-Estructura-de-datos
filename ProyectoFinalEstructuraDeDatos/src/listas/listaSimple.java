@@ -36,15 +36,13 @@ public class listaSimple <T> implements listaLigada<T>{
 	public void insertar(nodoLista<T> nodo) {
 		if (tamanio == 0){
 			cabeza.setSiguiente(nodo);
-			nodo.setSiguiente(cola);
-			cola.setPrevio(nodo);
 		}
 		else {
 			nodoLista<T> nodoTmp = cola.getPrevio();
 			nodoTmp.setSiguiente(nodo);
-			nodo.setSiguiente(cola);
-			cola.setPrevio(nodo);
 		}
+		nodo.setSiguiente(cola);
+		cola.setPrevio(nodo);
 		tamanio += 1;
 	}
 
