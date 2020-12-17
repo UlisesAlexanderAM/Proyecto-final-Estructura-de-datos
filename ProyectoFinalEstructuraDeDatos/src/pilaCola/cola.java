@@ -15,7 +15,11 @@ public class cola<T> extends listaDoble<T> {
 		super(nodo);
 	}
 
-	@Override
-	public void insertar(nodoLista<T> nodo) {
+	public void eliminar() {
+		nodoLista<T> nodoTmp = cabeza.getSiguiente().getSiguiente();
+		cabeza.setSiguiente(nodoTmp);
+		nodoTmp.setPrevio(cabeza);
 	}
+
+
 }

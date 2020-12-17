@@ -18,9 +18,8 @@ public class listaDoble<T> implements listaLigada<T> {
 	}
 
 	public listaDoble(nodoLista<T> nodo) {
+		this();
 		tamanio = 1;
-		cabeza = new nodoLista<>(null);
-		cola = new nodoLista<>(null);
 		cabeza.setSiguiente(nodo);
 		nodo.setPrevio(cabeza);
 		nodo.setSiguiente(cola);
@@ -52,6 +51,7 @@ public class listaDoble<T> implements listaLigada<T> {
 
 	@Override
 	public void insertar(T dato) {
+		insertar(new nodoLista<>(dato));
 	}
 
 	@Override
@@ -59,12 +59,13 @@ public class listaDoble<T> implements listaLigada<T> {
 		nodoLista<T> nodoTmp = cabeza.getSiguiente();
 		nodoLista<T> nodoBuscado = new nodoLista<>(null);
 		do {
-			if (cabeza.getSiguiente().getDato() == dato) {
-				nodoBuscado = cabeza.getSiguiente();
+			if (nodoTmp.getDato() == dato) {
+				nodoBuscado = nodoTmp;
 				break;
 			}
-		}while (cabeza.getSiguiente() != null);
-		cabeza.setSiguiente(nodoTmp);
+			else
+				nodoTmp=nodoTmp.getSiguiente();
+		}while (nodoTmp != cola);
 		return nodoBuscado;
 	}
 
@@ -104,8 +105,8 @@ public class listaDoble<T> implements listaLigada<T> {
 
 	@Override
 	public void vaciar() {
-		cabeza.setSiguiente(null);
-		cola.setPrevio(null);
+		cabeza.setSiguiente(cola);
+		cola.setPrevio(cabeza);
 	}
 
 	public int getTamanio() {
