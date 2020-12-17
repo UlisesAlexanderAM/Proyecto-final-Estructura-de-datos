@@ -15,8 +15,8 @@ public class cola<T> extends listaDoble<T> {
 		super(nodo);
 	}
 
-	public T quitar(){
-		if (eliminar()==-1) {
+	public T quitar() {
+		if (eliminar() == -1) {
 			return null;
 		} else
 			return frente();
@@ -29,12 +29,12 @@ public class cola<T> extends listaDoble<T> {
 			nodoLista<T> nodoTmp = cabeza.getSiguiente().getSiguiente();
 			cabeza.setSiguiente(nodoTmp);
 			nodoTmp.setPrevio(cabeza);
-			tamanio-=1;
+			tamanio -= 1;
 			return 0;
 		}
 	}
 
-	public T frente(){
+	public T frente() {
 		return primero();
 	}
 

@@ -8,7 +8,7 @@ public class pila<T> extends listaDoble<T> {
 		super();
 	}
 
-	public pila(nodoLista<T> nodo){
+	public pila(nodoLista<T> nodo) {
 		super(nodo);
 	}
 
@@ -16,12 +16,12 @@ public class pila<T> extends listaDoble<T> {
 		super(dato);
 	}
 
-	public void push(T dato){
+	public void push(T dato) {
 		insertar(new nodoLista<>(dato));
 	}
 
-	public T pop(){
-		if (eliminar()==-1) {
+	public T pop() {
+		if (eliminar() == -1) {
 			return null;
 		} else
 			return cima();
@@ -34,12 +34,12 @@ public class pila<T> extends listaDoble<T> {
 			nodoLista<T> nodoTmp = cola.getPrevio().getPrevio();
 			nodoTmp.setSiguiente(cola);
 			cola.setPrevio(nodoTmp);
-			tamanio-=1;
+			tamanio -= 1;
 			return 0;
 		}
 	}
 
-	public T cima(){
+	public T cima() {
 		return ultimo();
 	}
 }

@@ -1,6 +1,6 @@
 package listas.listasEnlazadas;
 
-public class listaSimple <T> implements listaLigada<T>{
+public class listaSimple<T> implements listaLigada<T> {
 	protected nodoLista<T> cabeza;
 	protected nodoLista<T> cola;
 	protected int tamanio;
@@ -34,10 +34,9 @@ public class listaSimple <T> implements listaLigada<T>{
 
 	@Override
 	public void insertar(nodoLista<T> nodo) {
-		if (tamanio == 0){
+		if (tamanio == 0) {
 			cabeza.setSiguiente(nodo);
-		}
-		else {
+		} else {
 			nodoLista<T> nodoTmp = cola.getPrevio();
 			nodoTmp.setSiguiente(nodo);
 		}
@@ -59,26 +58,25 @@ public class listaSimple <T> implements listaLigada<T>{
 			if (nodoTmp.getDato() == dato) {
 				nodoBuscado = nodoTmp;
 				break;
-			}
-			else
-				nodoTmp=nodoTmp.getSiguiente();
-		}while (nodoTmp != cola);
+			} else
+				nodoTmp = nodoTmp.getSiguiente();
+		} while (nodoTmp != cola);
 		return nodoBuscado;
 	}
 
 	@Override
 	public void eliminar(nodoLista<T> nodo) {
-		nodoLista <T> nodoPrevio = nodo.getPrevio();
-		nodoLista <T> nodoSiguiente = nodo.getSiguiente();
+		nodoLista<T> nodoPrevio = nodo.getPrevio();
+		nodoLista<T> nodoSiguiente = nodo.getSiguiente();
 		nodoPrevio.setSiguiente(nodoSiguiente);
 		nodoSiguiente.setPrevio(nodoPrevio);
-		tamanio-=1;
+		tamanio -= 1;
 	}
 
 	@Override
 	public int eliminar(T dato) {
 		nodoLista<T> nodoTmp = buscarDato(dato);
-		if (nodoTmp.getDato()==null)
+		if (nodoTmp.getDato() == null)
 			return -1;
 		else {
 			eliminar(buscarDato(dato));

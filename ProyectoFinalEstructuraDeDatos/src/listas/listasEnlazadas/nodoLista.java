@@ -1,6 +1,6 @@
 package listas.listasEnlazadas;
 
-public class nodoLista <T> {
+public class nodoLista<T> {
 	private nodoLista<T> siguiente;
 	private nodoLista<T> previo;
 	private T dato;
