@@ -1,12 +1,11 @@
-package listas;
+package listas.listasEnlazadas;
 
-public class listaSimple <T> implements listaLigada<T>{
+public class listaDoble<T> implements listaLigada<T> {
 	protected nodoLista<T> cabeza;
 	protected nodoLista<T> cola;
 	protected int tamanio;
 
-
-	public listaSimple() {
+	public listaDoble() {
 		tamanio = 0;
 		cabeza = new nodoLista<>(null);
 		cola = new nodoLista<>(null);
@@ -14,18 +13,18 @@ public class listaSimple <T> implements listaLigada<T>{
 		cola.setPrevio(cabeza);
 	}
 
-	public listaSimple(T dato) {
+	public listaDoble(T dato){
 		this(new nodoLista<>(dato));
 	}
 
-	public listaSimple(nodoLista<T> nodo) {
+	public listaDoble(nodoLista<T> nodo) {
 		this();
 		tamanio = 1;
 		cabeza.setSiguiente(nodo);
+		nodo.setPrevio(cabeza);
 		nodo.setSiguiente(cola);
 		cola.setPrevio(nodo);
 	}
-
 
 	@Override
 	public boolean estaVacia() {
@@ -36,10 +35,12 @@ public class listaSimple <T> implements listaLigada<T>{
 	public void insertar(nodoLista<T> nodo) {
 		if (tamanio == 0){
 			cabeza.setSiguiente(nodo);
+			nodo.setPrevio(cabeza);
 		}
 		else {
 			nodoLista<T> nodoTmp = cola.getPrevio();
 			nodoTmp.setSiguiente(nodo);
+			nodo.setPrevio(nodoTmp);
 		}
 		nodo.setSiguiente(cola);
 		cola.setPrevio(nodo);

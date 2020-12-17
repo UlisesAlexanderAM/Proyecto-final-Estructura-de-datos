@@ -1,4 +1,4 @@
-package listas;
+package listas.listasEnlazadas;
 
 public class nodoLista <T> {
 	private nodoLista<T> siguiente;

@@ -1,4 +1,4 @@
-package listas;
+package listas.listasEnlazadas;
 
 public interface listaLigada<T> {
 	boolean estaVacia();
