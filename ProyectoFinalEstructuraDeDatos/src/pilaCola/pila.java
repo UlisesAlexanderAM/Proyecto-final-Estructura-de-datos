@@ -13,7 +13,7 @@ public class pila<T> extends listaDoble<T> {
 	}
 
 	public pila(T dato) {
-		this(new nodoLista<>(dato));
+		super(dato);
 	}
 
 	public void push(T dato){
@@ -26,13 +26,17 @@ public class pila<T> extends listaDoble<T> {
 	}
 
 	public int eliminar() {
-		nodoLista<T> nodoTmp = cola.getPrevio().getPrevio();
-		nodoTmp.setSiguiente(cola);
-		cola.setPrevio(nodoTmp);
-		return 0;
+		if (this.estaVacia())
+			return -1;
+		else {
+			nodoLista<T> nodoTmp = cola.getPrevio().getPrevio();
+			nodoTmp.setSiguiente(cola);
+			cola.setPrevio(nodoTmp);
+			return 0;
+		}
 	}
 
 	public T cima(){
-		return cola.getPrevio().getDato();
+		return ultimo();
 	}
 }
