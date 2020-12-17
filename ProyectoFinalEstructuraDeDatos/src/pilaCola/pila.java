@@ -32,6 +32,7 @@ public class pila<T> extends listaDoble<T> {
 			nodoLista<T> nodoTmp = cola.getPrevio().getPrevio();
 			nodoTmp.setSiguiente(cola);
 			cola.setPrevio(nodoTmp);
+			tamanio-=1;
 			return 0;
 		}
 	}

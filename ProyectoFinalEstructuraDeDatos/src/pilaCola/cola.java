@@ -22,6 +22,7 @@ public class cola<T> extends listaDoble<T> {
 			nodoLista<T> nodoTmp = cabeza.getSiguiente().getSiguiente();
 			cabeza.setSiguiente(nodoTmp);
 			nodoTmp.setPrevio(cabeza);
+			tamanio-=1;
 			return 0;
 		}
 	}
