@@ -72,22 +72,22 @@ public abstract class listaLigada<T> implements lista<T> {
 
 	@Override
 	public T ultimo() {
-		return ultimo(cola.getPrevio());
+		return nodoUltimo().getDato();
 	}
 
 	@Override
 	public T primero() {
-		return primero(cabeza.getSiguiente());
+		return nodoPrimero().getDato();
 	}
 
 	@Override
-	public T primero(nodoLista<T> nodo) {
-		return nodo.getDato();
+	public nodoLista<T> nodoPrimero() {
+		return cabeza.getSiguiente();
 	}
 
 	@Override
-	public T ultimo(nodoLista<T> nodo) {
-		return nodo.getDato();
+	public nodoLista<T> nodoUltimo() {
+		return cola.getPrevio();
 	}
 
 	@Override
@@ -95,5 +95,17 @@ public abstract class listaLigada<T> implements lista<T> {
 		cabeza.setSiguiente(cola);
 		cola.setPrevio(cabeza);
 		tamanio = 0;
+	}
+
+	public boolean cicloIncompleto(nodoLista<T> nodo){
+		return nodo != cola;
+	}
+
+	public nodoLista<T> getCabeza() {
+		return cabeza;
+	}
+
+	public nodoLista<T> getCola() {
+		return cola;
 	}
 }

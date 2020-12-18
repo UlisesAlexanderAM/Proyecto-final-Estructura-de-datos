@@ -17,9 +17,10 @@ public interface lista<T> {
 
 	T primero();
 
-	T primero(nodoLista<T> nodo);
+	nodoLista<T> nodoPrimero();
 
-	T ultimo(nodoLista<T> nodo);
+	nodoLista<T> nodoUltimo();
 
 	void vaciar();
+
 }
