@@ -1,7 +1,7 @@
 package listas.pilaCola;
 
-import listas.listasEnlazadas.listaDoble;
-import listas.listasEnlazadas.nodoLista;
+import listas.listasLigadas.listaDoble;
+import listas.nodoLista;
 
 public class pila<T> extends listaDoble<T> {
 	public pila() {

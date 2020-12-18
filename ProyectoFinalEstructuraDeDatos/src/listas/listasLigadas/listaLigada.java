@@ -1,4 +1,7 @@
-package listas.listasEnlazadas;
+package listas.listasLigadas;
+
+import listas.lista;
+import listas.nodoLista;
 
 public abstract class listaLigada<T> implements lista<T> {
 	protected nodoLista<T> cabeza;
@@ -57,7 +60,15 @@ public abstract class listaLigada<T> implements lista<T> {
 	public abstract void eliminar(nodoLista<T> nodo);
 
 	@Override
-	public abstract int eliminar(T dato);
+	public int eliminar(T dato){
+		nodoLista<T> nodoTmp = buscarDato(dato);
+		if (nodoTmp.getDato() == null)
+			return -1;
+		else {
+			eliminar(buscarDato(dato));
+			return 0;
+		}
+	}
 
 	@Override
 	public T ultimo() {

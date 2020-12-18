@@ -1,29 +1,34 @@
-package listas.listasEnlazadas;
+package listas.listasLigadas;
 
-public class listaSimple<T> extends listaLigada<T> {
+import listas.nodoLista;
 
-	protected nodoLista<T> cabeza;
-	protected nodoLista<T> cola;
-	protected int tamanio;
-
-
-	public listaSimple() {
+public class listaCircular<T> extends listaLigada<T>{
+	public listaCircular(){
 		super();
 	}
 
-	public listaSimple(T dato) {
-		super(dato);
+	public listaCircular(T dato){
+		this(new nodoLista<>(dato));
+	}
+
+	public listaCircular(nodoLista<T> nodo){
+		this();
+		tamanio = 1;
+		cabeza.setSiguiente(nodo);
+		nodo.setSiguiente(nodo);
+		cola.setPrevio(nodo);
 	}
 
 	@Override
 	public void insertar(nodoLista<T> nodo) {
 		if (tamanio == 0) {
 			cabeza.setSiguiente(nodo);
+			nodo.setSiguiente(nodo);
 		} else {
 			nodoLista<T> nodoTmp = cola.getPrevio();
 			nodoTmp.setSiguiente(nodo);
+			nodo.setSiguiente(cabeza.getSiguiente());
 		}
-		nodo.setSiguiente(cola);
 		cola.setPrevio(nodo);
 		tamanio += 1;
 	}
@@ -37,14 +42,17 @@ public class listaSimple<T> extends listaLigada<T> {
 	}
 
 	@Override
-	public int eliminar(T dato) {
-		nodoLista<T> nodoTmp = buscarDato(dato);
-		if (nodoTmp.getDato() == null)
-			return -1;
-		else {
-			eliminar(buscarDato(dato));
-			return 0;
-		}
+	public nodoLista<T> buscarDato(T dato){
+		nodoLista<T> nodoTmp = cabeza.getSiguiente();
+		nodoLista<T> nodoBuscado = new nodoLista<>(null);
+		do {
+			if (nodoTmp.getDato() == dato) {
+				nodoBuscado = nodoTmp;
+				break;
+			} else
+				nodoTmp = nodoTmp.getSiguiente();
+		} while (cicloIncompleto(nodoTmp));
+		return nodoBuscado;
 	}
 
 	public nodoLista<T> buscarDatoPrevio(T dato){
@@ -59,7 +67,11 @@ public class listaSimple<T> extends listaLigada<T> {
 				nodoTmp = nodoTmp.getSiguiente();
 				nodoPrevio = nodoPrevio.getSiguiente();
 			}
-		} while (nodoTmp != cola);
+		} while (cicloIncompleto(nodoTmp));
 		return nodoBuscado;
+	}
+
+	public boolean cicloIncompleto(nodoLista<T> nodo){
+		return nodo != cabeza.getSiguiente();
 	}
 }

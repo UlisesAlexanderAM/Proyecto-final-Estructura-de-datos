@@ -1,4 +1,6 @@
-package listas.listasEnlazadas;
+package listas.listasLigadas;
+
+import listas.nodoLista;
 
 public class listaDoble<T> extends listaLigada<T> {
 
@@ -32,17 +34,6 @@ public class listaDoble<T> extends listaLigada<T> {
 		nodoPrevio.setSiguiente(nodoSiguiente);
 		nodoSiguiente.setPrevio(nodoPrevio);
 		tamanio -= 1;
-	}
-
-	@Override
-	public int eliminar(T dato) {
-		nodoLista<T> nodoTmp = buscarDato(dato);
-		if (nodoTmp.getDato() == null)
-			return -1;
-		else {
-			eliminar(buscarDato(dato));
-			return 0;
-		}
 	}
 
 }
