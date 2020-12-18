@@ -1,19 +1,19 @@
-package listas.pilaCola;
+package Listas.PilaCola;
 
-import listas.listasLigadas.listaDoble;
-import listas.nodoLista;
+import Listas.ListasLigadas.ListaDoble;
+import Listas.NodoLista;
 
-public class pila<T> extends listaDoble<T> {
-	public pila() {
+public class Pila<T> extends ListaDoble<T> {
+	public Pila() {
 		super();
 	}
 
-	public pila(T dato) {
+	public Pila(T dato) {
 		super(dato);
 	}
 
 	public void push(T dato) {
-		insertar(new nodoLista<>(dato));
+		insertar(new NodoLista<>(dato));
 	}
 
 	public T pop() {
@@ -27,7 +27,7 @@ public class pila<T> extends listaDoble<T> {
 		if (this.estaVacia())
 			return -1;
 		else {
-			nodoLista<T> nodoTmp = cola.getPrevio().getPrevio();
+			NodoLista<T> nodoTmp = cola.getPrevio().getPrevio();
 			nodoTmp.setSiguiente(cola);
 			cola.setPrevio(nodoTmp);
 			tamanio -= 1;

@@ -1,13 +1,13 @@
-package listas.pilaCola;
+package Listas.PilaCola;
 
-import listas.listasLigadas.listaDoble;
-import listas.nodoLista;
+import Listas.ListasLigadas.ListaDoble;
+import Listas.NodoLista;
 
-public class cola<T> extends listaDoble<T> {
-	public cola() {
+public class Cola<T> extends ListaDoble<T> {
+	public Cola() {
 	}
 
-	public cola(T dato) {
+	public Cola(T dato) {
 		super(dato);
 	}
 
@@ -22,7 +22,7 @@ public class cola<T> extends listaDoble<T> {
 		if (this.estaVacia())
 			return -1;
 		else {
-			nodoLista<T> nodoTmp = cabeza.getSiguiente().getSiguiente();
+			NodoLista<T> nodoTmp = cabeza.getSiguiente().getSiguiente();
 			cabeza.setSiguiente(nodoTmp);
 			nodoTmp.setPrevio(cabeza);
 			tamanio -= 1;

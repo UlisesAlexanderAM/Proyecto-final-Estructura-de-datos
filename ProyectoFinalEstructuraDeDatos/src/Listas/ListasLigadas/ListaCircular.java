@@ -1,17 +1,17 @@
-package listas.listasLigadas;
+package Listas.ListasLigadas;
 
-import listas.nodoLista;
+import Listas.NodoLista;
 
-public class listaCircular<T> extends listaLigada<T>{
-	public listaCircular(){
+public class ListaCircular<T> extends ListaLigada<T> {
+	public ListaCircular(){
 		super();
 	}
 
-	public listaCircular(T dato){
-		this(new nodoLista<>(dato));
+	public ListaCircular(T dato){
+		this(new NodoLista<>(dato));
 	}
 
-	public listaCircular(nodoLista<T> nodo){
+	public ListaCircular(NodoLista<T> nodo){
 		this();
 		tamanio = 1;
 		cabeza.setSiguiente(nodo);
@@ -20,12 +20,12 @@ public class listaCircular<T> extends listaLigada<T>{
 	}
 
 	@Override
-	public void insertar(nodoLista<T> nodo) {
+	public void insertar(NodoLista<T> nodo) {
 		if (tamanio == 0) {
 			cabeza.setSiguiente(nodo);
 			nodo.setSiguiente(nodo);
 		} else {
-			nodoLista<T> nodoTmp = cola.getPrevio();
+			NodoLista<T> nodoTmp = cola.getPrevio();
 			nodoTmp.setSiguiente(nodo);
 			nodo.setSiguiente(cabeza.getSiguiente());
 		}
@@ -34,17 +34,17 @@ public class listaCircular<T> extends listaLigada<T>{
 	}
 
 	@Override
-	public void eliminar(nodoLista<T> nodo) {
-		nodoLista<T> nodoPrevio = buscarDatoPrevio(nodo.getDato());
-		nodoLista<T> nodoSiguiente = nodo.getSiguiente();
+	public void eliminar(NodoLista<T> nodo) {
+		NodoLista<T> nodoPrevio = buscarDatoPrevio(nodo.getDato());
+		NodoLista<T> nodoSiguiente = nodo.getSiguiente();
 		nodoPrevio.setSiguiente(nodoSiguiente);
 		tamanio -= 1;
 	}
 
 	@Override
-	public nodoLista<T> buscarDato(T dato){
-		nodoLista<T> nodoTmp = cabeza.getSiguiente();
-		nodoLista<T> nodoBuscado = new nodoLista<>(null);
+	public NodoLista<T> buscarDato(T dato){
+		NodoLista<T> nodoTmp = cabeza.getSiguiente();
+		NodoLista<T> nodoBuscado = new NodoLista<>(null);
 		do {
 			if (nodoTmp.getDato() == dato) {
 				nodoBuscado = nodoTmp;
@@ -55,10 +55,10 @@ public class listaCircular<T> extends listaLigada<T>{
 		return nodoBuscado;
 	}
 
-	public nodoLista<T> buscarDatoPrevio(T dato){
-		nodoLista<T> nodoTmp = cabeza.getSiguiente();
-		nodoLista<T> nodoBuscado = new nodoLista<>(null);
-		nodoLista<T> nodoPrevio = cabeza;
+	public NodoLista<T> buscarDatoPrevio(T dato){
+		NodoLista<T> nodoTmp = cabeza.getSiguiente();
+		NodoLista<T> nodoBuscado = new NodoLista<>(null);
+		NodoLista<T> nodoPrevio = cabeza;
 		do {
 			if (nodoTmp.getDato() == dato) {
 				nodoBuscado = nodoPrevio;
@@ -71,7 +71,7 @@ public class listaCircular<T> extends listaLigada<T>{
 		return nodoBuscado;
 	}
 
-	public boolean cicloIncompleto(nodoLista<T> nodo){
+	public boolean cicloIncompleto(NodoLista<T> nodo){
 		return nodo != cabeza.getSiguiente();
 	}
 }

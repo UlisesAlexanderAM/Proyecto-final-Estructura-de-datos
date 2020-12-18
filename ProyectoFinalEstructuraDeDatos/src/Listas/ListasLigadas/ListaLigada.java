@@ -1,26 +1,26 @@
-package listas.listasLigadas;
+package Listas.ListasLigadas;
 
-import listas.lista;
-import listas.nodoLista;
+import Listas.Lista;
+import Listas.NodoLista;
 
-public abstract class listaLigada<T> implements lista<T> {
-	protected nodoLista<T> cabeza;
-	protected nodoLista<T> cola;
+public abstract class ListaLigada<T> implements Lista<T> {
+	protected NodoLista<T> cabeza;
+	protected NodoLista<T> cola;
 	protected int tamanio;
 
-	public listaLigada() {
-		cabeza = new nodoLista<>(null);
-		cola = new nodoLista<>(null);
+	public ListaLigada() {
+		cabeza = new NodoLista<>(null);
+		cola = new NodoLista<>(null);
 		tamanio = 0;
 		cabeza.setSiguiente(cola);
 		cola.setPrevio(cabeza);
 	}
 
-	public listaLigada(T dato) {
-		this(new nodoLista<>(dato));
+	public ListaLigada(T dato) {
+		this(new NodoLista<>(dato));
 	}
 
-	public listaLigada(nodoLista<T> nodo) {
+	public ListaLigada(NodoLista<T> nodo) {
 		this();
 		tamanio = 1;
 		cabeza.setSiguiente(nodo);
@@ -35,17 +35,17 @@ public abstract class listaLigada<T> implements lista<T> {
 	}
 
 	@Override
-	public abstract void insertar(nodoLista<T> nodo);
+	public abstract void insertar(NodoLista<T> nodo);
 
 	@Override
 	public void insertar(T dato) {
-		insertar(new nodoLista<>(dato));
+		insertar(new NodoLista<>(dato));
 	}
 
 	@Override
-	public nodoLista<T> buscarDato(T dato){
-		nodoLista<T> nodoTmp = cabeza.getSiguiente();
-		nodoLista<T> nodoBuscado = new nodoLista<>(null);
+	public NodoLista<T> buscarDato(T dato){
+		NodoLista<T> nodoTmp = cabeza.getSiguiente();
+		NodoLista<T> nodoBuscado = new NodoLista<>(null);
 		do {
 			if (nodoTmp.getDato() == dato) {
 				nodoBuscado = nodoTmp;
@@ -57,11 +57,11 @@ public abstract class listaLigada<T> implements lista<T> {
 	}
 
 	@Override
-	public abstract void eliminar(nodoLista<T> nodo);
+	public abstract void eliminar(NodoLista<T> nodo);
 
 	@Override
 	public int eliminar(T dato){
-		nodoLista<T> nodoTmp = buscarDato(dato);
+		NodoLista<T> nodoTmp = buscarDato(dato);
 		if (nodoTmp.getDato() == null)
 			return -1;
 		else {
@@ -81,12 +81,12 @@ public abstract class listaLigada<T> implements lista<T> {
 	}
 
 	@Override
-	public nodoLista<T> nodoPrimero() {
+	public NodoLista<T> nodoPrimero() {
 		return cabeza.getSiguiente();
 	}
 
 	@Override
-	public nodoLista<T> nodoUltimo() {
+	public NodoLista<T> nodoUltimo() {
 		return cola.getPrevio();
 	}
 
@@ -97,15 +97,15 @@ public abstract class listaLigada<T> implements lista<T> {
 		tamanio = 0;
 	}
 
-	public boolean cicloIncompleto(nodoLista<T> nodo){
+	public boolean cicloIncompleto(NodoLista<T> nodo){
 		return nodo != cola;
 	}
 
-	public nodoLista<T> getCabeza() {
+	public NodoLista<T> getCabeza() {
 		return cabeza;
 	}
 
-	public nodoLista<T> getCola() {
+	public NodoLista<T> getCola() {
 		return cola;
 	}
 }
