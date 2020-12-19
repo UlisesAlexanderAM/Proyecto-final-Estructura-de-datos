@@ -9,13 +9,14 @@ public class Menu extends JFrame {
 	public static void main(String[] args) {
 		JPanel ventanaContenedor = new JPanel();
 
-
 		ventana.setTitle("Menu Listas");
 		ventana.setContentPane(ventanaContenedor);
 		ventana.setLayout(new GridBagLayout());
 		ventana.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		ventana.setVisible(true);
 		ventana.pack();
+
+		//ventanaContenedor.add(PanelListaSimple);
 
 	}
 }

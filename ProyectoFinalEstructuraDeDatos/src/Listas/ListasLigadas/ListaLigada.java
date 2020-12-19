@@ -2,6 +2,8 @@ package Listas.ListasLigadas;
 
 import Listas.Lista;
 import Listas.NodoLista;
+import Listas.PilaCola.Cola;
+import Listas.PilaCola.Pila;
 
 public abstract class ListaLigada<T> implements Lista<T> {
 	protected NodoLista<T> cabeza;
@@ -107,5 +109,49 @@ public abstract class ListaLigada<T> implements Lista<T> {
 
 	public NodoLista<T> getCola() {
 		return cola;
+	}
+
+	public void eliminarElementos(T dato){
+		NodoLista<T> nodoTmp = this.nodoPrimero();
+		do {
+			if (this.eliminar(dato)==-1) {
+				break;
+			}
+		}while (this.cicloIncompleto(nodoTmp));
+	}
+
+	public int modificarDatoNodo(T datoViejo, T datoNuevo){
+		NodoLista<T> nodoTmp = this.buscarDato(datoViejo);
+		if (nodoTmp.getDato() == null)
+			return -1;
+		else {
+			nodoTmp.setDato(datoNuevo);
+			return 0;
+		}
+	}
+
+	public int modificarDatoNodos(T datoViejo, T datoNuevo){
+		while (this.buscarDato(datoViejo) != null){
+			modificarDatoNodo(datoViejo, datoNuevo);
+		}
+		return 0;
+	}
+
+	public String mostrarLista(){
+		StringBuilder lista= new StringBuilder();
+		if (this instanceof Cola){
+			while (!this.estaVacia())
+				lista.append(" ").append(((Cola<T>) this).quitar());
+			return lista.toString();
+		}else if (this instanceof Pila){
+			while (!this.estaVacia())
+				lista.append(" ").append(((Pila<T>) this).pop());
+			return lista.toString();
+		}else {
+			NodoLista<T> nodoTmp = this.nodoPrimero();
+			while (this.cicloIncompleto(nodoTmp))
+				lista.append(" ").append(nodoTmp.getDato().toString());
+			return lista.toString();
+		}
 	}
 }

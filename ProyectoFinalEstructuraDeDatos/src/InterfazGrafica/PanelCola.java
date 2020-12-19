@@ -1,4 +1,6 @@
 package InterfazGrafica;
 
-public class PanelCola {
+import javax.swing.*;
+
+public class PanelCola extends JFrame {
 }
