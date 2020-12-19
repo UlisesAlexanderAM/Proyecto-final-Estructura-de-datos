@@ -6,8 +6,8 @@ import Listas.PilaCola.Cola;
 import Listas.PilaCola.Pila;
 
 public abstract class ListaLigada<T> implements Lista<T> {
-	protected NodoLista<T> cabeza;
-	protected NodoLista<T> cola;
+	protected final NodoLista<T> cabeza;
+	protected final NodoLista<T> cola;
 	protected int tamanio;
 
 	public ListaLigada() {
@@ -120,21 +120,15 @@ public abstract class ListaLigada<T> implements Lista<T> {
 		}while (this.cicloIncompleto(nodoTmp));
 	}
 
-	public int modificarDatoNodo(T datoViejo, T datoNuevo){
+	public void modificarDatoNodo(T datoViejo, T datoNuevo){
 		NodoLista<T> nodoTmp = this.buscarDato(datoViejo);
-		if (nodoTmp.getDato() == null)
-			return -1;
-		else {
-			nodoTmp.setDato(datoNuevo);
-			return 0;
-		}
+		nodoTmp.setDato(datoNuevo);
 	}
 
-	public int modificarDatoNodos(T datoViejo, T datoNuevo){
+	public void modificarDatoNodos(T datoViejo, T datoNuevo){
 		while (this.buscarDato(datoViejo) != null){
 			modificarDatoNodo(datoViejo, datoNuevo);
 		}
-		return 0;
 	}
 
 	public String mostrarLista(){

@@ -4,8 +4,8 @@ import Listas.NodoLista;
 
 public class ListaSimple<T> extends ListaLigada<T> {
 
-	protected NodoLista<T> cabeza;
-	protected NodoLista<T> cola;
+	protected NodoLista<T> cabeza = new NodoLista<>(null);
+	protected NodoLista<T> cola = new NodoLista<>(null);
 	protected int tamanio;
 
 
@@ -20,13 +20,13 @@ public class ListaSimple<T> extends ListaLigada<T> {
 	@Override
 	public void insertar(NodoLista<T> nodo) {
 		if (tamanio == 0) {
-			cabeza.setSiguiente(nodo);
+			this.cabeza.setSiguiente(nodo);
 		} else {
 			NodoLista<T> nodoTmp = cola.getPrevio();
 			nodoTmp.setSiguiente(nodo);
 		}
 		nodo.setSiguiente(cola);
-		cola.setPrevio(nodo);
+		this.cola.setPrevio(nodo);
 		tamanio += 1;
 	}
 

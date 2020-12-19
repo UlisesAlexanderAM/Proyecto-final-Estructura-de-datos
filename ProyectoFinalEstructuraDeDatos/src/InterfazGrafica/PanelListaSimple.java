@@ -7,8 +7,6 @@ import java.awt.*;
 
 public class PanelListaSimple extends JFrame{
 	private final ListaSimple<Double> listaSimple = new ListaSimple<>();
-	private final JPanel instrucionesPanel = new JPanel(new GridBagLayout());
-	private final JPanel resultadosPanel = new JPanel(new GridBagLayout());
 	private final JTextArea instruccionesTextArea = new JTextArea();
 	private final JPanel operacionesPanel = new JPanel(new GridBagLayout());
 	private final JButton agregarNodoButton = new JButton();
@@ -27,7 +25,6 @@ public class PanelListaSimple extends JFrame{
 	private final JButton sustituirDatosButton = new JButton();
 	private final JScrollPane listaJScrollPane = new JScrollPane();
 	private final JScrollPane instruccionesJScrollPane = new JScrollPane();
-	private final JScrollPane operacionesJScrollPane = new JScrollPane();
 	private final JTextField datoJTextField = new JTextField();
 	private final JTextField datoNuevoJTextField = new JTextField();
 	private JPanel ventana;
@@ -36,6 +33,8 @@ public class PanelListaSimple extends JFrame{
 	private final static String RESULTADOS_TEXT = "Aquí podras ver el contenido de la lista\n";
 	private String operacionesTextFinal;
 	private final StringBuilder operacionesText = new StringBuilder("Ingrese el número a ");
+	private final static String LISTA_TEXT ="Lista: \n";
+	private String listaResultante =LISTA_TEXT;
 	private double dato;
 	private int bandera=-1;
 
@@ -47,11 +46,14 @@ public class PanelListaSimple extends JFrame{
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.fill = GridBagConstraints.BOTH;
+		JPanel instrucionesPanel = new JPanel(new GridBagLayout());
 		ventana.add(instrucionesPanel,gbc);
 		instrucionesPanel.add(instruccionesJScrollPane, gbc);
 		instruccionesJScrollPane.add(instruccionesTextArea, gbc);
+		JScrollPane operacionesJScrollPane = new JScrollPane();
 		operacionesPanel.add(operacionesJScrollPane, gbc);
 		operacionesJScrollPane.add(operacionesTextArea, gbc);
+		JPanel resultadosPanel = new JPanel(new GridBagLayout());
 		resultadosPanel.add(resultadosLabel, gbc);
 		listaJScrollPane.add(listaTextPane, gbc);
 		gbc.gridx = 0;
@@ -88,6 +90,18 @@ public class PanelListaSimple extends JFrame{
 			operacionesText.append("agregar a la lista: ");
 			operacionesTextFinal = operacionesText.toString();
 			operacionesTextArea.setText(operacionesTextFinal);
+			gbc.gridx = 0;
+			gbc.gridy = 1;
+			gbc.fill = GridBagConstraints.WEST;
+			operacionesPanel.add(datoLabel, gbc);
+			gbc.gridx = 1;
+			gbc.gridy = 1;
+			gbc.fill = GridBagConstraints.EAST;
+			operacionesPanel.add(datoJTextField, gbc);
+			gbc.gridx = 0;
+			gbc.gridy = 2;
+			gbc.fill = GridBagConstraints.BOTH;
+			operacionesPanel.add(ejecutarButton, gbc);
 			bandera = 0;
 			pack();
 		});
@@ -236,6 +250,9 @@ public class PanelListaSimple extends JFrame{
 						}
 					}
 				}
+				listaResultante=LISTA_TEXT+listaSimple.mostrarLista();
+				listaTextPane.setText(listaResultante);
+				JOptionPane.showMessageDialog(ejecutarButton, listaResultante);
 			}
 
 		});
@@ -261,8 +278,13 @@ public class PanelListaSimple extends JFrame{
 		datoLabel.setText("Ingrese el número: ");
 		ejecutarButton.setText("Ejecutar");
 		datoJTextField.setToolTipText("Ingrese el numero: ");
+		datoJTextField.setText("0.0");
 		datoNuevoLabel.setText("Ingrese el número nuevo: ");
 		datoNuevoJTextField.setToolTipText("Ingrese el número nuevo: ");
 		pack();
+	}
+
+	public JPanel getVentana() {
+		return ventana;
 	}
 }

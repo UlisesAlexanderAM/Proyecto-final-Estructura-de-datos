@@ -7,8 +7,6 @@ import java.awt.*;
 
 public class PanelListaDoble extends JFrame{
 	private final ListaDoble<Double> lista = new ListaDoble<>();
-	private final JPanel instrucionesPanel = new JPanel(new GridBagLayout());
-	private final JPanel resultadosPanel = new JPanel(new GridBagLayout());
 	private final JTextArea instruccionesTextArea = new JTextArea();
 	private final JPanel operacionesPanel = new JPanel(new GridBagLayout());
 	private final JButton agregarNodoButton = new JButton();
@@ -27,7 +25,6 @@ public class PanelListaDoble extends JFrame{
 	private final JButton sustituirDatosButton = new JButton();
 	private final JScrollPane listaJScrollPane = new JScrollPane();
 	private final JScrollPane instruccionesJScrollPane = new JScrollPane();
-	private final JScrollPane operacionesJScrollPane = new JScrollPane();
 	private final JTextField datoJTextField = new JTextField();
 	private final JTextField datoNuevoJTextField = new JTextField();
 	private JPanel ventana;
@@ -47,11 +44,14 @@ public class PanelListaDoble extends JFrame{
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.fill = GridBagConstraints.BOTH;
+		JPanel instrucionesPanel = new JPanel(new GridBagLayout());
 		ventana.add(instrucionesPanel,gbc);
 		instrucionesPanel.add(instruccionesJScrollPane, gbc);
 		instruccionesJScrollPane.add(instruccionesTextArea, gbc);
+		JScrollPane operacionesJScrollPane = new JScrollPane();
 		operacionesPanel.add(operacionesJScrollPane, gbc);
 		operacionesJScrollPane.add(operacionesTextArea, gbc);
+		JPanel resultadosPanel = new JPanel(new GridBagLayout());
 		resultadosPanel.add(resultadosLabel, gbc);
 		listaJScrollPane.add(listaTextPane, gbc);
 		gbc.gridx = 0;
@@ -264,5 +264,9 @@ public class PanelListaDoble extends JFrame{
 		datoNuevoLabel.setText("Ingrese el número nuevo: ");
 		datoNuevoJTextField.setToolTipText("Ingrese el número nuevo: ");
 		pack();
+	}
+
+	public JPanel getVentana() {
+		return ventana;
 	}
 }

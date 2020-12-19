@@ -8,7 +8,6 @@ import java.awt.*;
 public class PanelCola extends JFrame {
 	private final Cola<Double> cola = new Cola<>();
 	private final JPanel instrucionesPanel = new JPanel(new GridBagLayout());
-	private final JPanel resultadosPanel = new JPanel(new GridBagLayout());
 	private final JTextArea instruccionesTextArea = new JTextArea();
 	private final JPanel operacionesPanel = new JPanel(new GridBagLayout());
 	private final JButton agregarNodoButton = new JButton();
@@ -21,7 +20,6 @@ public class PanelCola extends JFrame {
 	private final JTextPane listaTextPane = new JTextPane();
 	private final JScrollPane listaJScrollPane = new JScrollPane();
 	private final JScrollPane instruccionesJScrollPane = new JScrollPane();
-	private final JScrollPane operacionesJScrollPane = new JScrollPane();
 	private final JTextField datoJTextField = new JTextField();
 	private JPanel ventana;
 	private final static String INSTRUCCIONES_TEXT = "Aquí podras hacer varias operaciones sobre una cola" +
@@ -43,8 +41,10 @@ public class PanelCola extends JFrame {
 		ventana.add(instrucionesPanel,gbc);
 		instrucionesPanel.add(instruccionesJScrollPane, gbc);
 		instruccionesJScrollPane.add(instruccionesTextArea, gbc);
+		JScrollPane operacionesJScrollPane = new JScrollPane();
 		operacionesPanel.add(operacionesJScrollPane, gbc);
 		operacionesJScrollPane.add(operacionesTextArea, gbc);
+		JPanel resultadosPanel = new JPanel(new GridBagLayout());
 		resultadosPanel.add(resultadosLabel, gbc);
 		listaJScrollPane.add(listaTextPane, gbc);
 		gbc.gridx = 0;
@@ -131,5 +131,9 @@ public class PanelCola extends JFrame {
 		ejecutarButton.setText("Ejecutar");
 		datoJTextField.setToolTipText("Ingrese el numero: ");
 		pack();
+	}
+
+	public JPanel getVentana() {
+		return ventana;
 	}
 }

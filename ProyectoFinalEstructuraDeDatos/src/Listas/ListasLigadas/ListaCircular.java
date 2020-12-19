@@ -72,6 +72,6 @@ public class ListaCircular<T> extends ListaLigada<T> {
 	}
 
 	public boolean cicloIncompleto(NodoLista<T> nodo){
-		return nodo != cabeza.getSiguiente();
+		return nodoPrimero()!=nodoUltimo();
 	}
 }

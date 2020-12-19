@@ -1,15 +1,12 @@
 package InterfazGrafica;
 
 import Listas.ListasLigadas.ListaCircular;
-import Listas.ListasLigadas.ListaSimple;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class PanelListaCircular extends JFrame{
 	private final ListaCircular<Double> lista = new ListaCircular<>();
-	private final JPanel instrucionesPanel = new JPanel(new GridBagLayout());
-	private final JPanel resultadosPanel = new JPanel(new GridBagLayout());
 	private final JTextArea instruccionesTextArea = new JTextArea();
 	private final JPanel operacionesPanel = new JPanel(new GridBagLayout());
 	private final JButton agregarNodoButton = new JButton();
@@ -28,7 +25,6 @@ public class PanelListaCircular extends JFrame{
 	private final JButton sustituirDatosButton = new JButton();
 	private final JScrollPane listaJScrollPane = new JScrollPane();
 	private final JScrollPane instruccionesJScrollPane = new JScrollPane();
-	private final JScrollPane operacionesJScrollPane = new JScrollPane();
 	private final JTextField datoJTextField = new JTextField();
 	private final JTextField datoNuevoJTextField = new JTextField();
 	private JPanel ventana;
@@ -36,7 +32,9 @@ public class PanelListaCircular extends JFrame{
 			"\n de tipo numérico: ";
 	private final static String RESULTADOS_TEXT = "Aquí podras ver el contenido de la lista\n";
 	private String operacionesTextFinal;
-	private final StringBuilder operacionesText = new StringBuilder("Ingrese el número a ");
+	private final static String LISTA_TEXT ="Lista: \n";
+	private String listaResultante =LISTA_TEXT;
+	private final String operacionesText = "Ingrese el número a ";
 	private double dato;
 	private int bandera=-1;
 
@@ -48,13 +46,19 @@ public class PanelListaCircular extends JFrame{
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.fill = GridBagConstraints.BOTH;
+		JPanel instrucionesPanel = new JPanel(new GridBagLayout());
 		ventana.add(instrucionesPanel,gbc);
-		instrucionesPanel.add(instruccionesJScrollPane, gbc);
-		instruccionesJScrollPane.add(instruccionesTextArea, gbc);
-		operacionesPanel.add(operacionesJScrollPane, gbc);
-		operacionesJScrollPane.add(operacionesTextArea, gbc);
-		resultadosPanel.add(resultadosLabel, gbc);
-		listaJScrollPane.add(listaTextPane, gbc);
+//		instrucionesPanel.add(instruccionesJScrollPane, gbc);
+//		instruccionesJScrollPane.add(instruccionesTextArea, gbc);
+		instrucionesPanel.add(instruccionesTextArea,gbc);
+		JScrollPane operacionesJScrollPane = new JScrollPane();
+//		operacionesPanel.add(operacionesJScrollPane, gbc);
+//		operacionesJScrollPane.add(operacionesTextArea, gbc);
+		operacionesPanel.add(operacionesTextArea,gbc);
+		JPanel resultadosPanel = new JPanel(new GridBagLayout());
+//		resultadosPanel.add(resultadosLabel, gbc);
+//		listaJScrollPane.add(listaTextPane, gbc);
+		resultadosPanel.add(listaTextPane,gbc);
 		gbc.gridx = 0;
 		gbc.gridy = 1;
 		gbc.fill = GridBagConstraints.BOTH;
@@ -82,20 +86,30 @@ public class PanelListaCircular extends JFrame{
 		gbc.gridy = 2;
 		gbc.fill = GridBagConstraints.BOTH;
 		instrucionesPanel.add(sustituirDatosButton, gbc);
-		pack();
 
 		agregarNodoButton.addActionListener(actionEvent -> {
+			createUIComponents();
 			operacionesPanel.setVisible(true);
-			operacionesText.append("agregar a la lista: ");
-			operacionesTextFinal = operacionesText.toString();
+			operacionesTextFinal = operacionesText + "agregar a la lista: ";
 			operacionesTextArea.setText(operacionesTextFinal);
+			gbc.gridx = 0;
+			gbc.gridy = 1;
+			gbc.fill = GridBagConstraints.WEST;
+			operacionesPanel.add(datoLabel, gbc);
+			gbc.gridx = 1;
+			gbc.gridy = 1;
+			gbc.fill = GridBagConstraints.EAST;
+			operacionesPanel.add(datoJTextField, gbc);
+			gbc.gridx = 0;
+			gbc.gridy = 2;
+			gbc.fill = GridBagConstraints.BOTH;
+			operacionesPanel.add(ejecutarButton, gbc);
 			bandera = 0;
-			pack();
 		});
 		eliminarNodoButton.addActionListener(actionEvent -> {
+			createUIComponents();
 			operacionesPanel.setVisible(true);
-			operacionesText.append("eliminar(su primer aparición) de la lista: ");
-			operacionesTextFinal = operacionesText.toString();
+			operacionesTextFinal = operacionesText + "eliminar(su primer aparición) de la lista: ";
 			operacionesTextArea.setText(operacionesTextFinal);
 			gbc.gridx = 0;
 			gbc.gridy = 1;
@@ -110,12 +124,11 @@ public class PanelListaCircular extends JFrame{
 			gbc.fill = GridBagConstraints.BOTH;
 			operacionesPanel.add(ejecutarButton, gbc);
 			bandera = 1;
-			pack();
 		});
 		eliminarNodosButton.addActionListener(actionEvent -> {
+			createUIComponents();
 			operacionesPanel.setVisible(true);
-			operacionesText.append("eliminar(todas las apariciones) de la lista: ");
-			operacionesTextFinal = operacionesText.toString();
+			operacionesTextFinal = operacionesText + "eliminar(todas las apariciones) de la lista: ";
 			operacionesTextArea.setText(operacionesTextFinal);
 			gbc.gridx = 0;
 			gbc.gridy = 1;
@@ -130,16 +143,15 @@ public class PanelListaCircular extends JFrame{
 			gbc.fill = GridBagConstraints.BOTH;
 			operacionesPanel.add(ejecutarButton, gbc);
 			bandera = 2;
-			pack();
 		});
 //		ordenarButton.addActionListener(actionEvent -> {
 //			operacionesPanel.setVisible(true);
 //
 //		});
 		sustituirDatoButton.addActionListener(actionEvent -> {
+			createUIComponents();
 			operacionesPanel.setVisible(true);
-			operacionesText.append("sustituir(primer aparición) de la lista: ");
-			operacionesTextFinal = operacionesText.toString();
+			operacionesTextFinal = operacionesText + "sustituir(primer aparición) de la lista: ";
 			operacionesTextArea.setText(operacionesTextFinal);
 			gbc.gridx = 0;
 			gbc.gridy = 1;
@@ -162,12 +174,11 @@ public class PanelListaCircular extends JFrame{
 			gbc.fill = GridBagConstraints.BOTH;
 			operacionesPanel.add(ejecutarButton, gbc);
 			bandera = 3;
-			pack();
 		});
 		sustituirDatosButton.addActionListener(actionEvent -> {
+			createUIComponents();
 			operacionesPanel.setVisible(true);
-			operacionesText.append("sustituir(primer aparición) de la lista: ");
-			operacionesTextFinal = operacionesText.toString();
+			operacionesTextFinal = operacionesText + "sustituir(primer aparición) de la lista: ";
 			operacionesTextArea.setText(operacionesTextFinal);
 			gbc.gridx = 0;
 			gbc.gridy = 1;
@@ -190,10 +201,9 @@ public class PanelListaCircular extends JFrame{
 			gbc.fill = GridBagConstraints.BOTH;
 			operacionesPanel.add(ejecutarButton, gbc);
 			bandera = 4;
-			pack();
 		});
 		ejecutarButton.addActionListener(actionEvent -> {
-			String texto = datoJTextField.getText();
+			String texto = JOptionPane.showInputDialog("Ingrese un numero: ");
 			if (texto.isBlank()){
 				JOptionPane.showMessageDialog(ejecutarButton, "No ha ingresado un número.");
 			}else {
@@ -201,18 +211,12 @@ public class PanelListaCircular extends JFrame{
 				switch (bandera) {
 					case 0 -> {
 						lista.insertar(dato);
-						listaTextPane.setText(lista.mostrarLista());
-						pack();
 					}
 					case 1 -> {
 						lista.eliminar(dato);
-						listaTextPane.setText(lista.mostrarLista());
-						pack();
 					}
 					case 2 -> {
 						lista.eliminarElementos(dato);
-						listaTextPane.setText(lista.mostrarLista());
-						pack();
 					}
 					case 3 -> {
 						String texto2 = datoNuevoJTextField.getText();
@@ -221,8 +225,6 @@ public class PanelListaCircular extends JFrame{
 						} else {
 							double datoNuevo = Double.parseDouble(texto2);
 							lista.modificarDatoNodo(dato, datoNuevo);
-							listaTextPane.setText(lista.mostrarLista());
-							pack();
 						}
 					}
 					case 4 -> {
@@ -232,11 +234,12 @@ public class PanelListaCircular extends JFrame{
 						} else {
 							double datoNuevo = Double.parseDouble(texto2);
 							lista.modificarDatoNodos(dato, datoNuevo);
-							listaTextPane.setText(lista.mostrarLista());
-							pack();
 						}
 					}
 				}
+				listaResultante=LISTA_TEXT+lista.mostrarLista();
+				listaTextPane.setText(listaResultante);
+				JOptionPane.showMessageDialog(ejecutarButton, listaResultante);
 			}
 
 		});
@@ -257,13 +260,19 @@ public class PanelListaCircular extends JFrame{
 		resultadosLabel.setText(RESULTADOS_TEXT);
 		resultadosLabel.setLabelFor(listaJScrollPane);
 		listaJScrollPane.setWheelScrollingEnabled(true);
-		listaTextPane.setText("Lista: \n");
+		listaTextPane.setText(listaResultante);
 		listaTextPane.setEditable(false);
 		datoLabel.setText("Ingrese el número: ");
 		ejecutarButton.setText("Ejecutar");
 		datoJTextField.setToolTipText("Ingrese el numero: ");
+		datoJTextField.setText("Ingrese un numero: ");
 		datoNuevoLabel.setText("Ingrese el número nuevo: ");
 		datoNuevoJTextField.setToolTipText("Ingrese el número nuevo: ");
-		pack();
+		datoNuevoJTextField.setText("Ingrese un numero: ");
+		operacionesTextArea.setEditable(false);
+	}
+
+	public JPanel getVentana() {
+		return ventana;
 	}
 }
