@@ -31,7 +31,7 @@ public class PanelListaDoble extends JFrame{
 	private final JTextField datoJTextField = new JTextField();
 	private final JTextField datoNuevoJTextField = new JTextField();
 	private JPanel ventana;
-	private final static String INSTRUCCIONES_TEXT = "Aquí podras hacer varias operaciones sobre una lista ligada simple" +
+	private final static String INSTRUCCIONES_TEXT = "Aquí podras hacer varias operaciones sobre una lista doblemente ligada" +
 			"\n de tipo numérico: ";
 	private final static String RESULTADOS_TEXT = "Aquí podras ver el contenido de la lista\n";
 	private String operacionesTextFinal;

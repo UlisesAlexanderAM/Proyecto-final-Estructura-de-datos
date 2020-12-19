@@ -139,19 +139,26 @@ public abstract class ListaLigada<T> implements Lista<T> {
 
 	public String mostrarLista(){
 		StringBuilder lista= new StringBuilder();
+		NodoLista<T> nodoTmp;
 		if (this instanceof Cola){
-			while (!this.estaVacia())
-				lista.append(" ").append(((Cola<T>) this).quitar());
-			return lista.toString();
-		}else if (this instanceof Pila){
-			while (!this.estaVacia())
-				lista.append(" ").append(((Pila<T>) this).pop());
-			return lista.toString();
+			Cola<T> cola = (Cola<T>) this;
+			while (!cola.estaVacia()) {
+				lista.append(" ").append(cola.quitar());
+			}
 		}else {
-			NodoLista<T> nodoTmp = this.nodoPrimero();
-			while (this.cicloIncompleto(nodoTmp))
-				lista.append(" ").append(nodoTmp.getDato().toString());
-			return lista.toString();
+			if (this instanceof Pila){
+				Pila<T> pila = (Pila<T>) this;
+				while (!pila.estaVacia()) {
+					lista.append(" ").append(pila.pop());
+				}
+			}else {
+				nodoTmp = this.nodoPrimero();
+				while (this.cicloIncompleto(nodoTmp)) {
+					lista.append(" ").append(nodoTmp.getDato().toString());
+					nodoTmp = nodoTmp.getSiguiente();
+				}
+			}
 		}
+		return lista.toString();
 	}
 }

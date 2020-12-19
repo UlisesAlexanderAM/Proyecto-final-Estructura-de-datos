@@ -4,6 +4,7 @@ import Listas.ListasLigadas.ListaDoble;
 import Listas.NodoLista;
 
 public class Pila<T> extends ListaDoble<T> {
+	T datoCima;
 	public Pila() {
 		super();
 	}
@@ -20,7 +21,7 @@ public class Pila<T> extends ListaDoble<T> {
 		if (eliminar() == -1) {
 			return null;
 		} else
-			return cima();
+			return datoCima;
 	}
 
 	public int eliminar() {
@@ -28,6 +29,7 @@ public class Pila<T> extends ListaDoble<T> {
 			return -1;
 		else {
 			NodoLista<T> nodoTmp = cola.getPrevio().getPrevio();
+			datoCima = cima();
 			nodoTmp.setSiguiente(cola);
 			cola.setPrevio(nodoTmp);
 			tamanio -= 1;
